@@ -17,6 +17,7 @@
 
         <button type="submit" name="ajouter">Ajouter le produit</button>
     </form>
+    
 </main>
 
 <?php require_once('./order/view/partials/footer.php'); ?>

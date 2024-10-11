@@ -1,28 +1,26 @@
 <?php require_once('./order/view/partials/header.php'); ?>
 <main>
 
-		<form method="POST" action="http://localhost:8888/esd-oop-php/create-order">
+    <form method="POST" action="http://localhost:8888/esd-oop-php/create-order">
 
-			<label for="customerName">Nom du client</label>
-			<input type="text" id="customerName" name="customerName" required>
-			<br>
+        <label for="customerName">Nom du client</label>
+        <input type="text" id="customerName" name="customerName" required>
+        <br>
 
-			<label for="product">Produit</label>
+        <label for="product">Produit</label>
 
-			<select id="product" name="products[]" multiple>
-				<option value="tshirt">T-shirt</option>
-				<option value="jeans">Jeans</option>
-				<option value="shoes">Chaussures</option>
-				<option value="short">Short</option>
-				<option value="cap">Casquette</option>
-				<option value="pull">Pull</option>
-			</select>
-			<br>
+        <select id="product" name="products[]" multiple>
+		<?php foreach ($products as $product) : 
+			var_dump($product)?>
+                        <option value="<?php echo $product->getId(); ?>"><?php echo $product->getTitle(); ?></option>
+                    <?php endforeach; ?>
+        </select>
+        <br>
 
-			<button type="submit">Ajouter</button>
+        <button type="submit">Ajouter</button>
 
-		</form>
+    </form>
 
-	</main>
+</main>
 
 <?php require_once('./order/view/partials/footer.php'); ?>

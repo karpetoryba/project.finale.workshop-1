@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once('./order/controller/IndexController.php');
 require_once('./order/controller/ProcessOrderCreateController.php');
 require_once('./order/controller/PayController.php');
@@ -13,7 +17,7 @@ require_once('./product/controller/IndexProductController.php');
 require_once('./product/controller/ProcessCreateProductController.php');
 require_once('./product/controller/ListProductsController.php');
 
-
+require_once('./storereview/controller/IndexStoreReviewController.php');
 
 // Récupère l'url actuelle et supprime le chemin de base
 // c'est à dire : http://localhost:8888/esd-oop-php/public/
@@ -87,5 +91,10 @@ if ($endUri === "create-product-process") {
 if ($endUri === "list-products") {
     $ListProductsController = new ListProductsController();
     $ListProductsController->listProducts();
+    return;
+}
+if ($endUri === "create-review") {
+    $IndexStoreReviewController = new IndexStoreReviewController(); // Corrected the variable name
+    $IndexStoreReviewController->IndexStoreReview();
     return;
 }

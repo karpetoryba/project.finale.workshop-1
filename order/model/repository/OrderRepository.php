@@ -25,5 +25,8 @@ class OrderRepository {
 
 		return $_SESSION['order'];
 	}
+	public function setProducts(array $products): void {
+        $_SESSION['products'] = $products;
+    }
 
 }

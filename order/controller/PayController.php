@@ -1,19 +1,40 @@
 <?php
 
 require_once './order/model/repository/OrderRepository.php';
+require_once './product/model/repository/ProductRepository.php';
 
 class PayController
 {
+    private $orderRepository;
+    private $productRepository;
+
+    public function __construct()
+    {
+        $this->orderRepository = new OrderRepository();
+        $this->productRepository = new ProductRepository();
+    }
+
     public function pay()
     {
-        $orderRepository = new OrderRepository();
-        $order = $orderRepository->find();
+        $order = $this->orderRepository->find();
 
         if (!$order) {
-            require_once './order/view/404.php';
+            $this->renderView('404.php');
             return;
         }
 
-        require_once './order/view/pay.php';
+        $this->renderView('pay.php', ['order' => $order]);
+    }
+
+    public function index()
+    {
+        $products = $this->productRepository->findAll();
+        $this->renderView('home.php', ['products' => $products]);
+    }
+
+    private function renderView($view, $data = [])
+    {
+        extract($data);
+        require_once("./order/view/$view");
     }
 }

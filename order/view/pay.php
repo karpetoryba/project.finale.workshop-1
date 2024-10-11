@@ -1,16 +1,14 @@
 <?php require_once('./order/view/partials/header.php'); ?>
 	
-	<main>
-		<p>Payer la commande (c'est même pas débité sur votre compte. Ou peut être que si. Mais faites confiance) </p>
+<main>
+    <p>Payer la commande (c'est même pas débité sur votre compte. Ou peut être que si. Mais faites confiance)</p>
+
+    <form method="POST" action="http://localhost:8888/esd-oop-php/process-payment">
 
 
-		<form method="POST" action="http://localhost:8888/esd-oop-php/process-payment">
+        <button type="submit">Payer</button>
 
-			<label for="payment"></label>
-
-			<button type="submit">Payer</button>
-
-		</form>
-	</main>
+    </form>
+</main>
 
 <?php require_once('./order/view/partials/footer.php'); ?>

@@ -4,7 +4,7 @@
  
 class Product {
 
-    
+    //Magic string
     public static int $MIN_CHARACTERS_TITLE = 3;
     public static int $MAX_CHARACTERS_TITLE = 100;
     public static int $MIN_PRICE = 1;
@@ -12,6 +12,7 @@ class Product {
     public static int $DEFAULT_PRICE = 2;
     public static string $DEFAULT_DESCRIPTION = "Pas de description";
     public static bool $DEFAULT_STATUS = false;
+
 
 
     private int $id;
@@ -23,6 +24,7 @@ class Product {
     private string $description;
 
     private bool $status;
+
 
 	
     public function __construct(string $title, float $price, string $description, ?bool $status) {
@@ -40,7 +42,10 @@ class Product {
        $this->status = $status ?: Product::$DEFAULT_STATUS;
 
 
+
     }
+
+
 
     public function validateTitle($title): void {
         $titleLength = strlen($title);
@@ -54,6 +59,10 @@ class Product {
         if ($price < self::$MIN_PRICE || $price > self::$MAX_PRICE) {
             throw new Exception("Le prix doit être compris entre " . self::$MIN_PRICE . " et " . self::$MAX_PRICE . " euros.");
         }
+    }
+
+    public function getId(): int {
+        return $this->id;
     }
 
     public function getTitle(): string {
@@ -71,5 +80,6 @@ class Product {
     public function getStatus(): string {
         return $this->status ? 'Actif' : 'Désactivé';
     }
+
 
 }
