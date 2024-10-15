@@ -16,8 +16,7 @@ require_once('./order/controller/SetShippingMethodController.php');
 require_once('./product/controller/IndexProductController.php');
 require_once('./product/controller/ProcessCreateProductController.php');
 require_once('./product/controller/ListProductsController.php');
-
-require_once('./storereview/controller/IndexStoreReviewController.php');
+require_once('./product/controller/DeleteProductController.php');
 
 // Récupère l'url actuelle et supprime le chemin de base
 // c'est à dire : http://localhost:8888/esd-oop-php/public/
@@ -93,8 +92,9 @@ if ($endUri === "list-products") {
     $ListProductsController->listProducts();
     return;
 }
-if ($endUri === "create-review") {
-    $IndexStoreReviewController = new IndexStoreReviewController(); // Corrected the variable name
-    $IndexStoreReviewController->IndexStoreReview();
+
+if ($endUri === "delete-product") {
+    $DeleteProductController = new DeleteProductController(); 
+    $DeleteProductController->DeleteProduct();
     return;
 }

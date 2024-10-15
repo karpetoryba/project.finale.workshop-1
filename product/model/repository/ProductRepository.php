@@ -22,4 +22,22 @@ class ProductRepository {
     public function findAll(): ?array {
         return $_SESSION['products'] ?? null;
     }
+    
+    public function deleteById(int $id): bool
+    {
+        if (!isset($_SESSION['products'])) {
+            return false;
+        }
+
+        foreach ($_SESSION['products'] as $index => $product) {
+            if ($product->getId() == $id) {
+                unset($_SESSION['products'][$index]);
+                $_SESSION['products'] = array_values($_SESSION['products']);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
